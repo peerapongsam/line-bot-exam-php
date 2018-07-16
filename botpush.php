@@ -20,7 +20,7 @@ $message = "";
 
 //Peerapong Samarnpong pushed to branch release/2.3.0 of developer/theandroid (Compare changes)
 if ($events['object_kind'] == 'push') {
-  $message = $events['user_name'] . "pushed to branch " . $events['project']['path_with_namespace'];
+  $message = $events['user_name'] . " pushed to " . $events['ref'] . " to " . $events['project']['path_with_namespace'];
   $commits = $events['commits'];
   if (count($commits) > 0) {
     foreach($commits as $k => $commit) {
