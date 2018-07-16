@@ -37,6 +37,9 @@ if ($events['object_kind'] == 'push') {
   }
 }
 
+
+if ($message != "") {
+
 $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($access_token);
 $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $channelSecret]);
 
@@ -44,3 +47,6 @@ $textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($messa
 $response = $bot->pushMessage($pushID, $textMessageBuilder);
 
 echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
+} else {
+  echo "200 OK";
+}
