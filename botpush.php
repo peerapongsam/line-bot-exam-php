@@ -16,10 +16,17 @@ $content = file_get_contents('php://input');
 // Parse JSON
 $events = json_decode($content, true);
 
+$message = "";
+
+//Peerapong Samarnpong pushed to branch release/2.3.0 of developer/theandroid (Compare changes)
+if ($events['object_kind'] == 'push') {
+  $message = $events['user_name'] . "pushed to branch " . $events['project']['path_with_namespace'];
+}
+
 $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($access_token);
 $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => $channelSecret]);
 
-$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($events['repository']['name']);
+$textMessageBuilder = new \LINE\LINEBot\MessageBuilder\TextMessageBuilder($message);
 $response = $bot->pushMessage($pushID, $textMessageBuilder);
 
 echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
