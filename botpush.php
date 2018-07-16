@@ -21,6 +21,12 @@ $message = "";
 //Peerapong Samarnpong pushed to branch release/2.3.0 of developer/theandroid (Compare changes)
 if ($events['object_kind'] == 'push') {
   $message = $events['user_name'] . "pushed to branch " . $events['project']['path_with_namespace'];
+  $commits = $events['commits'];
+  if (count($commits) > 0) {
+    foreach($commits as $k => $commit) {
+      $message = "\n  - " .substr($commit['id'], 0, 8) . ": " . $commit['message'] . " By " . $commit['author']['name'] ;
+    }
+  }
 }
 
 $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient($access_token);
