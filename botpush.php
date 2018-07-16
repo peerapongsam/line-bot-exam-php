@@ -33,7 +33,7 @@ if ($events['object_kind'] == 'push') {
     $message .= " By " . $events['user']['name'] . " (" . $events['user']['username'] . ")";
     $message .= " " . $events['object_attributes']['status'];
     if ($events['object_attributes']['duration'] != null) {
-      $message .= " in " . $events['object_attributes']['duration'] . " sec";
+      $message .= " in " . convert_to_string_time($events['object_attributes']['duration']);
     }
   }
 }
@@ -50,4 +50,12 @@ $response = $bot->pushMessage($pushID, $textMessageBuilder);
 echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
 } else {
   echo "200 OK";
+}
+
+
+function convert_to_string_time($num_seconds)
+{
+    $seconds = $num_seconds % 60;
+    $min = floor( $num_second / 60 );
+    return "{$min}:{$seconds}";
 }
