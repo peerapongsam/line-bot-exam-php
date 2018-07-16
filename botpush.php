@@ -8,7 +8,7 @@ $access_token = 'V9STYPKw1lj1QkwhDOzjFws9nL3vGYsyC+atEO+1IXagdD28oG6Q0qpdIObLfRn
 
 $channelSecret = '2c889b8cbcbcf88fe77bc710164f058b';
 
-$pushID = 'Uc8ef1520e9fd27b5e7d63236edf3245a';
+$pushID = 'Ced2355670a3eea81c0a8b8329d693255';
 
 
 // Get POST body content
