@@ -24,7 +24,7 @@ if ($events['object_kind'] == 'push') {
   $commits = $events['commits'];
   if (count($commits) > 0) {
     foreach($commits as $k => $commit) {
-      $message = "\n  - " .substr($commit['id'], 0, 8) . ": " . $commit['message'] . " By " . $commit['author']['name'] ;
+      $message .= "\n  - " .substr($commit['id'], 0, 8) . ": " . $commit['message'] . " By " . $commit['author']['name'] ;
     }
   }
 }
