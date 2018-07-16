@@ -53,9 +53,8 @@ echo $response->getHTTPStatus() . ' ' . $response->getRawBody();
 }
 
 
-function convert_to_string_time($num_seconds)
-{
-    $seconds = $num_seconds % 60;
-    $min = floor( $num_second / 60 );
-    return "{$min}:{$seconds}";
+function convert_to_string_time($num_seconds) {
+  $duration = 1; // values 0 and higher are supported!
+  $result = ltrim( sprintf( '%02dh%02dm%02ds', floor( $duration / 3600 ), floor( ( $duration / 60 ) % 60 ), ( $duration % 60 ) ), '0hm' );
+  if( $result == 's' ) { $result = '0s'; }
 }
