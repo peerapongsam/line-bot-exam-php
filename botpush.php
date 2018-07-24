@@ -19,7 +19,12 @@ $message = "";
 
 if ($events['object_kind'] == 'push') {
   //Peerapong Samarnpong pushed to branch release/2.3.0 of developer/theandroid (Compare changes)
-  $message = $events['user_name'] . " pushed to " . str_replace('refs/heads/', '', $events['ref']) . " to " . $events['project']['path_with_namespace'];
+  if ($events['project']['name'] == 'theandroid') {
+    $message .= "🤖 ";
+  } else if ($events['project']['name'] == 'theandroid') {
+    $message .= "🍎 ";
+  }
+  $message .= $events['user_name'] . " pushed to " . str_replace('refs/heads/', '', $events['ref']) . " to " . $events['project']['path_with_namespace'];
   $commits = $events['commits'];
   if (count($commits) > 0) {
     foreach($commits as $k => $commit) {
