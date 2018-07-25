@@ -35,12 +35,19 @@ if ($events['object_kind'] == 'push') {
 } else if ($events['object_kind'] == 'pipeline') {
   if ($events['object_attributes']['status'] == 'success' || $events['object_attributes']['status'] == 'fail') {
     //developer/theandroid: Pipeline #605 of branch release/2.3.0 by Peerapong Samarnpong (peerapongsam) passed in 12:07
-    $message = $events['project']['path_with_namespace'] . ": Pipeline #" . $events['object_attributes']['id'] . " of branch " . $events['object_attributes']['ref'];
+    if ($events['object_attributes']['status'] == 'success') {
+      $message .= "✔ ";
+    } else {
+      $message .= "❌ ";
+    }
+    $message .= $events['project']['path_with_namespace'] . ": Pipeline #" . $events['object_attributes']['id'] . " of branch " . $events['object_attributes']['ref'];
     $message .= " By " . $events['user']['name'] . " (" . $events['user']['username'] . ")";
     $message .= " " . $events['object_attributes']['status'];
     if ($events['object_attributes']['duration'] != null) {
       $message .= " in " . convert_to_string_time($events['object_attributes']['duration']);
     }
+  }  else {
+    $message = "";
   }
 } else {
   $message = "";
