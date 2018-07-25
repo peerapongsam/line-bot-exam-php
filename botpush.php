@@ -33,7 +33,7 @@ if ($events['object_kind'] == 'push') {
     }
   }
 } else if ($events['object_kind'] == 'pipeline') {
-  if ($events['object_attributes']['status'] == 'success' || $events['object_attributes']['status'] == 'fail') {
+  if ($events['object_attributes']['status'] == 'success' || $events['object_attributes']['status'] == 'failed') {
     //developer/theandroid: Pipeline #605 of branch release/2.3.0 by Peerapong Samarnpong (peerapongsam) passed in 12:07
     if ($events['object_attributes']['status'] == 'success') {
       $message .= "✔ ";
