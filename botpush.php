@@ -17,13 +17,14 @@ $events = json_decode($content, true);
 
 $message = "";
 
+if ($events['project']['name'] == 'theandroid') {
+  $message .= "🤖 ";
+} else if ($events['project']['name'] == 'theandroid') {
+  $message .= "🍎 ";
+}
+
 if ($events['object_kind'] == 'push') {
   //Peerapong Samarnpong pushed to branch release/2.3.0 of developer/theandroid (Compare changes)
-  if ($events['project']['name'] == 'theandroid') {
-    $message .= "🤖 ";
-  } else if ($events['project']['name'] == 'theandroid') {
-    $message .= "🍎 ";
-  }
   $message .= $events['user_name'] . " pushed to " . str_replace('refs/heads/', '', $events['ref']) . " to " . $events['project']['path_with_namespace'];
   $commits = $events['commits'];
   if (count($commits) > 0) {
@@ -41,8 +42,9 @@ if ($events['object_kind'] == 'push') {
       $message .= " in " . convert_to_string_time($events['object_attributes']['duration']);
     }
   }
+} else {
+  $message = "";
 }
-
 
 if ($message != "") {
 
