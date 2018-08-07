@@ -19,7 +19,7 @@ $message = "";
 
 if ($events['project']['name'] == 'theandroid') {
   $message .= "🤖 ";
-} else if ($events['project']['name'] == 'theandroid') {
+} else if ($events['project']['name'] == 'theios2.0swift4') {
   $message .= "🍎 ";
 }
 
