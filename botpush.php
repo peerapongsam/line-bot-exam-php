@@ -18,7 +18,7 @@ $events = json_decode($content, true);
 $message = "";
 
 if ($events['project']['name'] == 'theandroid') {
-  $message .= "🤖 ";
+  $message .= "🐸 ";
 } else if ($events['project']['name'] == 'theios2.0swift4') {
   $message .= "🍎 ";
 }
