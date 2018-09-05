@@ -27,13 +27,18 @@ if ($events['object_kind'] == 'push') {
   if ($events['after'] == '0000000000000000000000000000000000000000') {
     $message .= "🔴 " . $events['user_name'] . " deleted branch " . str_replace('refs/heads/', '', $events['ref']) . " from " . $events['project']['path_with_namespace'];
   } else {
+    
     $commits = $events['total_commits_count'];
     if ($events['total_commits_count'] == 1) {
       $commits .= ' commit';
     } else {
       $commits .= ' commits';
     }
-    $message .= "🔵 " . $events['user_name'] . " pushed " . $commits . " to branch " . str_replace('refs/heads/', '', $events['ref']) . " to " . $events['project']['path_with_namespace'];
+    if ($events['before'] == '0000000000000000000000000000000000000000') {
+      $message .= "⚪ " . $events['user_name'] . " created branch " . str_replace('refs/heads/', '', $events['ref']) . " with " . $commits . " at " . $events['project']['path_with_namespace'];
+    } else {
+      $message .= "🔵 " . $events['user_name'] . " pushed " . $commits . " to branch " . str_replace('refs/heads/', '', $events['ref']) . " at " . $events['project']['path_with_namespace'];
+    }
   }
   $commits = $events['commits'];
   if (count($commits) > 0) {
