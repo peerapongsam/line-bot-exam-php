@@ -43,7 +43,7 @@ if ($events['object_kind'] == 'push') {
   $commits = $events['commits'];
   if (count($commits) > 0) {
     foreach($commits as $k => $commit) {
-      $message .= "\n  - " . $commit['message'];
+      $message .= "\n  + " . $commit['message'];
     }
   }
 } else if ($events['object_kind'] == 'pipeline') {
